@@ -7,13 +7,13 @@ ARG HTTP_PORT=8069
 
 # check: https://pkgs.alpinelinux.org/packages?branch=v3.17
 RUN apk add --no-cache \
-            make=4.3-r1 \
-            gcc=12.2.1_git20220924-r4 \
-            musl-dev=1.2.3-r5 \
-            xz-dev=5.2.9-r0 \
-            perl=5.36.0-r2 \
-            patch=2.7.6-r9 \
-            git=2.38.5-r0
+            make=4.4.1-r2 \
+            gcc=13.2.1_git20240309-r0 \
+            musl-dev=1.2.5-r0 \
+            xz-dev=5.6.2-r0 \
+            perl=5.38.2-r0 \
+            patch=2.7.6-r10 \
+            git=2.45.2-r0
 
 WORKDIR /build/
 
@@ -21,9 +21,9 @@ RUN git clone https://github.com/ipxe/ipxe.git
 
 WORKDIR /build/ipxe/
 
-ADD https://github.com/ipxe/ipxe/pull/612.patch 612.patch
-
-RUN patch -p 1 < 612.patch
+#ADD https://github.com/ipxe/ipxe/pull/612.patch 612.patch
+#
+#RUN patch -p 1 < 612.patch
 
 WORKDIR /build/ipxe/src/
 
@@ -37,8 +37,8 @@ COPY embedded.ipxe .
 
 RUN \
     sed -i "s/HTTP_PORT/${HTTP_PORT}/g" embedded.ipxe;    \
-    make bin-x86_64-pcbios/ipxe.pxe EMBED=embedded.ipxe;  \
-    make bin-x86_64-efi/ipxe.efi    EMBED=embedded.ipxe
+    make -j$(nproc) bin-x86_64-pcbios/ipxe.pxe EMBED=embedded.ipxe;  \
+    make -j$(nproc) bin-x86_64-efi/ipxe.efi    EMBED=embedded.ipxe
 
 # Get Alpine tag from: https://hub.docker.com/_/alpine
 FROM alpine:3.20.3
@@ -58,7 +58,7 @@ LABEL org.opencontainers.image.authors='dreknix <dreknix@proton.me>' \
 
 # check: https://pkgs.alpinelinux.org/packages?branch=v3.17
 RUN apk add --no-cache \
-            tftp-hpa=5.2-r5
+            tftp-hpa=5.2-r7
 
 WORKDIR /
 

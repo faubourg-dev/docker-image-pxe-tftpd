@@ -20,6 +20,7 @@ tasks:
     desc: Build Docker image
     cmds:
       - docker build
+               --memory=8g --cpus=8
                --build-arg 'ROOT_DIR={{ .ROOT_DIR }}'
                --build-arg 'HTTP_PORT={{ .HTTP_PORT }}'
                --build-arg 'DEBUG={{ .DEBUG }}'
