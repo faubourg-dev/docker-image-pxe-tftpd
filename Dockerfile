@@ -66,14 +66,14 @@ RUN apk add --no-cache \
 
 WORKDIR /
 
-COPY --from=builder /build/ipxe/src/bin-x86_64-pcbios/ipxe.pxe /
-COPY --from=builder /build/ipxe/src/bin-x86_64-efi/ipxe.efi    /
+COPY --from=builder /build/ipxe/src/bin-x86_64-pcbios/ipxe.pxe /tftpboot/
+COPY --from=builder /build/ipxe/src/bin-x86_64-efi/ipxe.efi    /tftpboot/
 
 COPY entrypoint.sh /
 
 EXPOSE ${PORT}/udp
 
-VOLUME ${ROOT_DIR}
+# VOLUME ${ROOT_DIR}
 
 ENV ROOT_DIR=${ROOT_DIR}
 ENV LISTEN_ADDR=${LISTEN_ADDR}
