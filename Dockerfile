@@ -31,7 +31,11 @@ RUN sed -i '/DOWNLOAD_PROTO_HTTPS/s/#undef/#define/'     config/general.h; \
     sed -i '/PING_CMD/s/\/\/#define/#define/'            config/general.h; \
     sed -i '/CONSOLE_CMD/s/\/\/#define/#define/'         config/general.h; \
     sed -i '/CONSOLE_FRAMEBUFFER/s/\/\/#define/#define/' config/console.h; \
-    sed -i '/KEYBOARD_MAP/s/us/de/'                      config/console.h
+    sed -i '/KEYBOARD_MAP/s/us/fr/'                      config/console.h; \
+    sed -i '/DOWNLOAD_PROTO_NFS/s/#undef/#define/'     config/general.h; \
+    sed -i '/IPSTAT_CMD/s/\/\/#define/#define/'            config/general.h; \
+    sed -i '/REBOOT_CMD/s/\/\/#define/#define/'            config/general.h; \
+    sed -i '/POWEROFF/s/\/\/#define/#define/'            config/general.h;
 
 COPY embedded.ipxe .
 
