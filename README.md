@@ -6,14 +6,14 @@ with
 [iPXE](https://ipxe.org/)
 as network bootstrap program
 (NBP). It is part of the Docker compose
-[PXE service](https://github.com/dreknix/docker-compose-pxe)
+[PXE service](https://github.com/faubourg-dev/docker-image-pxe-tftpd)
 
 The image is also available from
-[Docker Hub](https://hub.docker.com/r/dreknix/pxe-tftpd):
+[ghcr](https://github.com/faubourg-dev/docker-image-pxe-tftpd):
 
 ```console
-$ docker pull dreknix/pxe-tftpd
-```
+$ docker pull ghcr.io/faubourg-dev/docker-image-pxe-tftpd:latest
+
 
 ## Configure iPXE
 
@@ -93,4 +93,4 @@ $ curl tftp://localhost/ipxe.efi
 
 ## License
 
-[MIT](https://github.com/dreknix/docker-image-pxe-tftpd/blob/main/LICENSE)
+[MIT](https://github.com/faubourg-dev/docker-image-pxe-tftpd/docker-image-pxe-tftpd/blob/main/LICENSE)
